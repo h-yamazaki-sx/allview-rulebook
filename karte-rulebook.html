@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>All View カルテ＆ルールブック</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif; }
+  .option-label { transition: all 0.15s ease; }
+  .option-label:hover { background-color: #F0F7FF; border-color: #93C5FD; }
+  input[type="radio"]:checked + .option-content { color: #1D4ED8; }
+  .option-wrapper:has(input:checked) { background-color: #EFF6FF; border-color: #3B82F6; }
+  textarea, input[type="text"] { transition: all 0.15s ease; }
+  textarea:focus, input[type="text"]:focus { outline: none; border-color: #3B82F6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+  .variant-badge { display: inline-block; padding: 4px 12px; border-radius: 9999px; font-size: 11px; font-weight: bold; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+
+<div class="max-w-3xl mx-auto px-4 py-10">
+
+  <!-- Header -->
+  <header class="text-center mb-10">
+    <h1 class="text-3xl font-bold text-slate-900 mb-2">All View 事前質問＆ルールブック</h1>
+    <p class="text-sm text-slate-500">
+      STEP 1を回答後、STEP 2へお進みください
+    </p>
+  </header>
+
+  <!-- Section 1: カルテ -->
+  <section id="section-karte" class="mb-10">
+    <div class="bg-blue-600 text-white rounded-t-xl px-6 py-4 flex items-center justify-between">
+      <div>
+        <div class="text-xs opacity-80 mb-1">STEP 1</div>
+        <h2 class="text-xl font-bold">初回MTG前にご記入ください</h2>
+      </div>
+      <span class="text-xs bg-white text-blue-700 px-3 py-1 rounded-full font-bold">必須</span>
+    </div>
+    <div class="bg-white rounded-b-xl shadow-sm border border-blue-100 border-t-0 p-6 space-y-6">
+
+      <!-- K1: 回答者 -->
+      <div class="karte-q">
+        <label class="block font-bold mb-2">Q1. 回答者について</label>
+        <div class="grid grid-cols-2 gap-3">
+          <input type="text" id="k1-name" placeholder="お名前" class="border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+          <input type="text" id="k1-role" placeholder="役職 / 所属" class="border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+        </div>
+      </div>
+
+      <!-- K2: 実際の利用者レイヤー -->
+      <div class="karte-q">
+        <label class="block font-bold mb-2">Q2. All Viewを実際に触る方の役職はどれに近いですか？</label>
+        <div class="space-y-2" data-qid="k2">
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k2" value="経営層" class="mr-2"><span class="option-content">経営層（社長・役員）</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k2" value="部長・課長" class="mr-2"><span class="option-content">部長・課長クラス</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k2" value="現場マーケ" class="mr-2"><span class="option-content">現場のマーケティング担当</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k2" value="その他" class="mr-2"><span class="option-content">その他</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- K3: 事業内容 -->
+      <div class="karte-q">
+        <label class="block font-bold mb-2">Q3. 事業内容・主要チャネルを教えてください</label>
+        <p class="text-xs text-slate-500 mb-2">例：D2Cで健康食品のサブスク販売、自社EC + LINE + Amazon など</p>
+        <textarea id="k3" rows="2" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" placeholder="事業内容と主要チャネル"></textarea>
+      </div>
+
+      <!-- K4: 規模感 -->
+      <div class="karte-q">
+        <label class="block font-bold mb-2">Q4. 事業規模を教えてください</label>
+        <div class="grid grid-cols-2 gap-3">
+          <input type="text" id="k4-revenue" placeholder="月商（例：3,000万円）" class="border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+          <input type="text" id="k4-orders" placeholder="月間注文件数（例：5,000件）" class="border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+        </div>
+      </div>
+
+      <!-- K5: トライアルゴール -->
+      <div class="karte-q">
+        <label class="block font-bold mb-2">
+          Q5. この1ヶ月で「これが見られたら本導入したい」というものを教えてください <span class="text-red-500 text-xs ml-1">★最重要</span>
+        </label>
+        <p class="text-xs text-slate-500 mb-2">達成したい姿を具体的に書いていただくほど、オンボーディングの精度が上がります</p>
+        <textarea id="k5" rows="4" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" placeholder="例：広告チャネル別のROASが日次で見られる状態／F2転換率を商品別に把握したい"></textarea>
+      </div>
+
+      <!-- K6: 現状の課題 -->
+      <div class="karte-q">
+        <label class="block font-bold mb-2">Q6. 今、困っていること・見えていない数字はありますか？</label>
+        <textarea id="k6" rows="3" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" placeholder="例：店舗の売上とECの売上を統合して見られない／LTVの計算が担当者ごとにバラバラ"></textarea>
+      </div>
+
+      <!-- K7: BIツール -->
+      <div class="karte-q">
+        <label class="block font-bold mb-2">Q7. 現在お使いのBIツール・分析ツールはありますか？</label>
+        <div class="space-y-2" data-qid="k7">
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k7" value="なし（Excel/スプシのみ）" class="mr-2"><span class="option-content">なし（Excel・スプレッドシートで管理）</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k7" value="Looker Studio" class="mr-2"><span class="option-content">Looker Studio</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k7" value="Tableau" class="mr-2"><span class="option-content">Tableau</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k7" value="その他BIツール" class="mr-2"><span class="option-content">その他BIツール（下記に記入）</span>
+          </label>
+        </div>
+        <input type="text" id="k7-other" placeholder="ツール名（その他を選んだ場合）" class="mt-2 w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+      </div>
+
+      <!-- K8: ECカート種別（分岐） -->
+      <div class="karte-q">
+        <label class="block font-bold mb-2">Q8. 現在お使いのECカートシステムは？ <span class="text-red-500 text-xs ml-1">★STEP2分岐</span></label>
+        <div class="space-y-2" data-qid="k8">
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k8" value="W2" class="mr-2"><span class="option-content">W2 Repeat / W2 Unified</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k8" value="楽天" class="mr-2"><span class="option-content">楽天市場（楽天RMS）</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k8" value="その他" class="mr-2"><span class="option-content">その他カート（Shopify / EC-CUBE / futureshop / 自社開発 など）</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- K9: 販売形態（分岐） -->
+      <div class="karte-q">
+        <label class="block font-bold mb-2">Q9. 主要な販売形態は？ <span class="text-red-500 text-xs ml-1">★STEP2分岐</span></label>
+        <div class="space-y-2" data-qid="k9">
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k9" value="定期" class="mr-2"><span class="option-content">定期購入（サブスク）が中心</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k9" value="単発" class="mr-2"><span class="option-content">単発購入が中心</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k9" value="両方" class="mr-2"><span class="option-content">定期・単発の両方を扱う</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- STEP 1 Next button -->
+      <div class="pt-4 flex flex-col items-center gap-2">
+        <button onclick="proceedToStep2()" id="next-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition">
+          次へ進む（STEP 2）
+        </button>
+        <p id="next-error" class="text-xs text-red-500 hidden">未回答の必須項目があります</p>
+        <p id="variant-change-hint" class="text-xs text-amber-600 hidden">⚠ カート種別／販売形態が変更されました。「再構成」ボタンを押してSTEP 2を更新してください。</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 2 wrapper: 動的に内容差し替え -->
+  <section id="section-rulebook" class="mb-10 hidden">
+    <div class="bg-slate-700 text-white rounded-t-xl px-6 py-4 flex items-center justify-between cursor-pointer" onclick="toggleRulebook()">
+      <div>
+        <div class="text-xs opacity-80 mb-1">STEP 2</div>
+        <h2 class="text-xl font-bold">ルールブック定義</h2>
+        <p class="text-xs opacity-80 mt-1">不要な質問はスキップ可</p>
+      </div>
+      <span id="toggle-icon" class="text-2xl transition-transform">▼</span>
+    </div>
+
+    <div id="rulebook-body" class="bg-white rounded-b-xl shadow-sm border border-slate-200 border-t-0 p-6">
+      <div id="variant-indicator" class="mb-4 text-center"></div>
+      <div id="rulebook-questions" class="space-y-6"></div>
+    </div>
+  </section>
+
+  <!-- Submit -->
+  <div id="submit-area" class="hidden flex flex-col items-center gap-3 mb-10">
+    <button onclick="generateOutput()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition">
+      回答を生成する
+    </button>
+    <p class="text-xs text-slate-500">※ 生成 →「送信」で担当者に自動共有されます</p>
+  </div>
+
+  <!-- Output -->
+  <div id="output-section" class="hidden bg-white rounded-xl shadow-lg border border-slate-200 p-6 mb-10">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-lg font-bold">生成された回答</h3>
+      <div class="flex gap-2">
+        <button onclick="copyOutput()" id="copy-btn" class="text-sm bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg px-4 py-2">
+          コピー
+        </button>
+        <button onclick="submitToSheet()" id="submit-btn" class="text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-2 font-bold">
+          送信
+        </button>
+      </div>
+    </div>
+    <pre id="output-text" class="bg-slate-50 rounded-lg p-4 text-sm whitespace-pre-wrap break-words"></pre>
+    <p id="submit-status" class="mt-3 text-sm hidden"></p>
+  </div>
+
+</div>
+
+<script>
+/* ========== 共通ヘルパ ========== */
+function getRadio(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : null;
+}
+function otherText(name) {
+  const el = document.getElementById(`${name}-other`);
+  return el ? el.value.trim() : '';
+}
+function isSkipped(qid) {
+  const q = document.querySelector(`[data-qid="${qid}"]`);
+  if (!q) return true;
+  return q.closest('.rulebook-q').dataset.skipped === 'true';
+}
+
+/* ========== STEP1 → STEP2 分岐 ========== */
+function proceedToStep2() {
+  const errors = [];
+  if (!document.getElementById('k1-name').value.trim()) errors.push('k1-name');
+  if (!document.getElementById('k1-role').value.trim()) errors.push('k1-role');
+  if (!getRadio('k2')) errors.push('k2');
+  if (!document.getElementById('k3').value.trim()) errors.push('k3');
+  if (!document.getElementById('k4-revenue').value.trim()) errors.push('k4-revenue');
+  if (!document.getElementById('k4-orders').value.trim()) errors.push('k4-orders');
+  if (!document.getElementById('k5').value.trim()) errors.push('k5');
+  if (!document.getElementById('k6').value.trim()) errors.push('k6');
+  if (!getRadio('k7')) errors.push('k7');
+  if (!getRadio('k8')) errors.push('k8');
+  if (!getRadio('k9')) errors.push('k9');
+
+  const errEl = document.getElementById('next-error');
+  if (errors.length > 0) {
+    errEl.classList.remove('hidden');
+    errors.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('border-red-400');
+    });
+    const firstErr = document.getElementById(errors[0]) || document.querySelector(`[data-qid="${errors[0]}"]`);
+    if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  errEl.classList.add('hidden');
+
+  const variant = decideVariant(getRadio('k8'), getRadio('k9'));
+  const variantChanged = currentVariant && currentVariant !== variant;
+
+  if (variantChanged) {
+    const ok = confirm('カート種別／販売形態が変更されました。STEP 2を再構成します。\n（既に入力したSTEP 2の回答はリセットされます）よろしいですか？');
+    if (!ok) return;
+  }
+
+  renderVariant(variant);
+
+  document.getElementById('section-rulebook').classList.remove('hidden');
+  document.getElementById('submit-area').classList.remove('hidden');
+  document.getElementById('section-rulebook').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  const btn = document.getElementById('next-btn');
+  btn.textContent = '✓ STEP 2 表示中（再生成する場合は再度クリック）';
+  btn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+  btn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+}
+
+function decideVariant(cart, sales) {
+  if (cart === '楽天') return 'rakuten';
+  if (cart === 'W2' && sales === '定期') return 'w2_subscription';
+  if (cart === 'W2') return 'w2_regular';
+  if (sales === '定期' || sales === '両方') return 'regular_subscription';
+  return 'regular';
+}
+
+/* k8/k9 変更時に「再生成が必要」のヒントを表示 */
+document.addEventListener('change', (e) => {
+  if ((e.target.name === 'k8' || e.target.name === 'k9') && currentVariant) {
+    const newVariant = decideVariant(getRadio('k8'), getRadio('k9'));
+    const hint = document.getElementById('variant-change-hint');
+    if (newVariant !== currentVariant) {
+      hint.classList.remove('hidden');
+    } else {
+      hint.classList.add('hidden');
+    }
+  }
+});
+
+document.addEventListener('input', (e) => {
+  if (e.target.classList.contains('border-red-400')) e.target.classList.remove('border-red-400');
+});
+
+function toggleRulebook() {
+  const body = document.getElementById('rulebook-body');
+  const icon = document.getElementById('toggle-icon');
+  body.classList.toggle('hidden');
+  icon.style.transform = body.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+}
+
+/* ========== 質問データ定義（バリアント別） ========== */
+const VARIANTS = {
+  regular: {
+    label: '🛒 通常購入版（非定期）',
+    badgeClass: 'bg-green-100 text-green-700',
+    questions: [
+      { id: 'r1', section: 'A. 受注ステータス', label: '売上が確定したとみなすのは、どの状態のときですか？', options: [
+        { v: '「発送完了」のみ', d: '発送が完了した受注だけを売上とする' },
+        { v: '「発送完了」と「発送済み」の両方', d: '発送処理が進んだ段階で売上とする' },
+        { v: '「発送完了」「発送済み」「配送完了」すべて', d: '配送まで完了したものも含める' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r2', section: 'B. 売上金額', label: '「売上金額」として使う数字はどれですか？', options: [
+        { v: '合計金額', d: '小計・送料・手数料・割引・税などすべて含んだ合計' },
+        { v: '支払い合計', d: '合計金額からポイント利用分を引いた実際の支払い額' },
+        { v: '各要素を選んで組み合わせる', d: '下の項目から必要なものを選んでください' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r3', section: 'B. 売上金額（商品別）', label: '商品ごとの売上を出す場合、どのように計算しますか？', options: [
+        { v: '商品代金のみ', d: '送料・手数料・ポイントは含めません' },
+        { v: '商品代金＋送料等を按分して合算', d: '商品代金に加えて、送料等を商品数で割って加算' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r4', section: 'C. 受注の基準日', label: '受注の期間を絞り込むとき、基準にする日付はどれですか？', options: [
+        { v: '注文を受けた日（受注日）', d: '注文が入った日付を基準にします' },
+        { v: '発送が完了した日', d: '商品を発送し終えた日付を基準にします' },
+        { v: '配送日', d: '商品が届いた日を基準にします' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r5', section: 'D. 新規 / リピート判定', label: '「新規顧客」と「リピート顧客」はどう区別しますか？', options: [
+        { v: '注文回数で判定', d: '過去の注文が1回目なら新規、2回目以降ならリピート' },
+        { v: '初回注文日で判定', d: '初回注文日を起点に新規・リピートを区別する' },
+        { v: '顧客の登録日で判定', d: '会員登録日を起点に新規・リピートを区別する' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r6', section: '購入回数', label: '購入回数（リピート回数）はどのように数えますか？', options: [
+        { v: '売上確定した受注の件数をすべて数える', d: '発送完了した注文数 = 購入回数' },
+        { v: '日付順に数え直す', d: '基準日の日付順で1回目・2回目と順番に番号をふる' },
+        { v: '顧客データに記録されている購入回数を使う', d: '顧客マスタの購入回数フィールドを使います' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r7', section: 'E. F2転換', label: '「F2転換」（2回目の購入）の期間はどう区切りますか？', options: [
+        { v: '初回購入から30日以内', d: '30日以内に2回目を購入したかどうか' },
+        { v: '初回購入から60日以内' },
+        { v: '初回購入から90日以内' },
+        { v: '期間は設けない', d: '2回目の購入があれば期間に関わらずF2転換とする' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r8', section: 'F. 商品', label: '1回の注文に複数の商品がある場合、「初回商品」はどう決めますか？', options: [
+        { v: '最初の1つだけ', d: '注文内で最初に登録された1商品のみを初回商品とします' },
+        { v: 'すべての商品', d: '注文内のすべての商品を初回商品として扱います' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r9', section: 'G. 広告・流入元', label: '広告URL（流入元）が空やNULLの受注はどう扱いますか？', options: [
+        { v: '集計から除外する', d: '広告分析には含めない' },
+        { v: '「不明」として集計に含める', d: '「不明」「未設定」などのラベルで集計する' },
+        { v: '「自然流入」として扱う', d: '広告経由ではないオーガニック流入とみなす' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r10', section: 'H. LTV', label: 'LTV（顧客生涯価値）はどの範囲で計算しますか？', options: [
+        { v: 'その顧客のすべての注文を合算', d: '顧客の受注金額の合計をLTVとする' },
+        { v: '初回購入から12ヶ月間', d: '初回購入から1年以内の注文のみ対象' },
+        { v: '初回購入から24ヶ月間', d: '初回購入から2年以内の注文のみ対象' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]}
+    ]
+  },
+
+  regular_subscription: {
+    label: '🛒 通常購入版（定期含む）',
+    badgeClass: 'bg-blue-100 text-blue-700',
+    questions: [
+      { id: 'r1', section: 'A. 売上ステータス', label: '売上が確定したとみなすのは、どの状態のときですか？', options: [
+        { v: '「発送完了」のみ', d: '発送が完了した注文のみを売上として計上する' },
+        { v: '「発送完了」と「発送済み」の両方', d: '発送段階の両方を対象とする' },
+        { v: '発送完了・発送済み・配送完了すべて', d: '配送まで完了したものも含める' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r2', section: 'B. 売上金額', label: '「売上金額」として使う数字はどれですか？', options: [
+        { v: '合計金額', d: '小計・送料・手数料・割引・税など、すべて含んだ合計' },
+        { v: '支払い合計', d: '合計金額からクーポン利用分を差し引いた実際の決済額' },
+        { v: '各変数を選んで組み合わせる', d: '下の選択肢から必要な要素を組み合わせてください' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r3', section: 'C. 定期購入', label: '定期購入の「回数」はどのように数えますか？', options: [
+        { v: '受注データに記載されている回数を使う', d: '受注ごとに記載されている回数の数字をそのまま使用' },
+        { v: '定期マスタに記録されている回数を使う', d: '定期管理マスタの現在値を使用' },
+        { v: '発送完了した受注を時系列で数え直す', d: '実発送ベースでカウント' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r4', section: 'C. 定期購入', label: '定期購入が「有効（継続中）」かどうかは、何で判断しますか？', options: [
+        { v: 'ステータスが「有効」になっているかどうか' },
+        { v: '停止日・キャンセル日がないかどうか' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r5', section: 'D. 解約', label: '解約の判定では「停止」と「キャンセル」のどちらを優先しますか？', options: [
+        { v: '停止を優先する' },
+        { v: 'キャンセルを優先する' },
+        { v: 'どちらか早い方を使う' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r6', section: 'E. 受注の基準日', label: '受注の期間を絞り込むとき、基準にする日付はどれですか？', options: [
+        { v: '注文を受けた日（注文日）' },
+        { v: '発送が完了した日' },
+        { v: '配送日' },
+        { v: '予約が作成された日' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r7', section: 'F. 売上（商品別）', label: '商品ごとの売上を出す場合、どのように計算しますか？', options: [
+        { v: '商品代金のみ', d: '送料・手数料・ポイントは含めない' },
+        { v: '商品代金＋送料等を按分して合算' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r8', section: 'G. 初回', label: '1回の注文に複数の商品がある場合、「初回商品」はどう決めますか？', options: [
+        { v: '最初の1つだけ' },
+        { v: 'すべての商品' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r9', section: 'H. アップセル/クロスセル', label: '「アップセル」はどう判定しますか？', options: [
+        { v: '商品コードに特定の文字が含まれている' },
+        { v: '商品名に特定の文字が含まれている' },
+        { v: '同じ定期内で金額が前回より上がった場合' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r10', section: 'H. アップセル/クロスセル', label: '「クロスセル」はどう判定しますか？', options: [
+        { v: '商品コードに特定の文字が含まれている' },
+        { v: '前回の注文と違う商品が購入されている' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r11', section: 'I. LTV', label: 'LTV（顧客生涯価値）を計算するとき、どの範囲の受注を含めますか？', options: [
+        { v: '同じ定期の注文だけ' },
+        { v: 'その顧客のすべての注文', d: '定期・単発、他サイトの注文も含めて計算' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]}
+    ]
+  },
+
+  w2_regular: {
+    label: '🟢 W2 Repeat 通常購入版（非定期）',
+    badgeClass: 'bg-emerald-100 text-emerald-700',
+    questions: [
+      { id: 'r1', section: 'A. 受注ステータス', label: '売上が確定したとみなすのは、どの状態のときですか？', options: [
+        { v: '出荷完了（SHP_COMP）のみ', d: '出荷処理が完了した受注だけを売上とする' },
+        { v: '出荷完了（SHP_COMP）＋配送完了（DLV_COMP）', d: '出荷完了または配送完了の受注を売上とする' },
+        { v: '注文受付（ODR_RECG）以降すべて', d: '注文受付段階で売上に含める（仮注文TMPは除外）' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r2', section: 'B. 売上金額', label: '「売上金額」として使う数字はどれですか？', options: [
+        { v: '支払金額合計', d: '小計＋送料＋手数料−クーポン−ポイント−各種割引 ＝ 実際の支払額' },
+        { v: '小計（商品代金合計）', d: '商品代金のみ（送料・手数料・割引を含まない）' },
+        { v: '各要素を選んで組み合わせる', d: '下の項目から必要なものを選んでください' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r3', section: 'B. 売上金額（商品別）', label: '商品ごとの売上を出す場合、どのように計算しますか？', options: [
+        { v: '明細小計のみ', d: '商品単価×数量（送料・手数料は含まない）' },
+        { v: '明細小計＋送料等を按分して合算', d: '明細小計に加えて、送料等を商品数で割って加算します' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r4', section: 'C. 受注の基準日', label: '受注の期間を絞り込むとき、基準にする日付はどれですか？', options: [
+        { v: '注文日', d: '注文が入った日付を基準にします' },
+        { v: '出荷完了日', d: '出荷処理が完了した日を基準にします' },
+        { v: '出荷予定日', d: '出荷予定日を基準にします' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r5', section: 'D. 新規 / リピート判定', label: '「新規顧客」と「リピート顧客」はどう区別しますか？', options: [
+        { v: '注文回数で判定', d: '過去の注文が1回目なら新規、2回目以降ならリピート' },
+        { v: '初回購入日で判定', d: 'users.first_order_date を起点に新規・リピートを区別する' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r6', section: '購入回数', label: '購入回数（リピート回数）はどのように数えますか？', options: [
+        { v: '売上確定した受注の件数をすべて数える', d: '確定した注文数 = 購入回数' },
+        { v: '日付順に数え直す', d: '基準日の日付順で1回目・2回目と順番に番号をふる' },
+        { v: '顧客データの累計購入回数を使う', d: 'users.order_count_order_all を使います' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r7', section: 'E. F2転換', label: '「F2転換」（2回目の購入）の期間はどう区切りますか？', options: [
+        { v: '初回購入から30日以内' },
+        { v: '初回購入から60日以内' },
+        { v: '初回購入から90日以内' },
+        { v: '期間は設けない', d: '2回目の購入があれば期間に関わらずF2転換とする' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r8', section: 'F. 商品', label: '1回の注文に複数の商品がある場合、「初回商品」はどう決めますか？', options: [
+        { v: '最初の1つだけ', d: '注文内で最初の1商品のみを初回商品とします' },
+        { v: 'すべての商品', d: '注文内のすべての商品を初回商品として扱います' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r9', section: 'G. LTV', label: 'LTV（顧客生涯価値）はどの範囲で計算しますか？', options: [
+        { v: 'その顧客のすべての注文を合算', d: '顧客の受注金額の合計をLTVとする' },
+        { v: '初回購入から12ヶ月間' },
+        { v: '初回購入から24ヶ月間' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]}
+    ]
+  },
+
+  w2_subscription: {
+    label: '🟣 W2 Repeat 定期版',
+    badgeClass: 'bg-purple-100 text-purple-700',
+    questions: [
+      { id: 'r1', section: 'A. 受注ステータス', label: '売上が確定したとみなすのは、どの状態のときですか？', options: [
+        { v: '出荷完了（SHP_COMP）のみ', d: '出荷処理が完了した受注だけを売上とする' },
+        { v: '出荷完了（SHP_COMP）＋配送完了（DLV_COMP）', d: '出荷完了または配送完了の受注を売上とする' },
+        { v: '注文受付（ODR_RECG）以降すべて', d: '注文受付段階で売上に含める（仮注文TMPは除外）' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r2', section: 'B. 売上金額', label: '「売上金額」として使う数字はどれですか？', options: [
+        { v: '支払金額合計', d: '小計＋送料＋手数料−クーポン−ポイント−各種割引 ＝ 実際の支払額' },
+        { v: '小計（商品代金合計）', d: '商品代金のみ（送料・手数料・割引を含まない）' },
+        { v: '各要素を選んで組み合わせる', d: '下の項目から必要なものを選んでください' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r3', section: 'B. 売上金額（商品別）', label: '商品ごとの売上を出す場合、どのように計算しますか？', options: [
+        { v: '明細小計のみ', d: '商品単価×数量（送料・手数料は含まない）' },
+        { v: '明細小計＋送料等を按分して合算', d: '明細小計に加えて、送料等を商品数で割って加算します' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r4', section: 'C. 定期購入', label: '定期購入の「回数」はどの数字を使いますか？', options: [
+        { v: '注文基準の回数', d: '注文時点での定期回数（orders.fixed_purchase_order_count）' },
+        { v: '出荷基準の回数', d: '出荷完了時点での定期回数（orders.fixed_purchase_shipped_count）' },
+        { v: '定期台帳の購入回数', d: '定期台帳に記録されている回数（fixedPurchases.order_count）' },
+        { v: '売上確定した受注を日付順に数え直す', d: '実際に確定した受注のみを対象に再カウントします' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r5', section: 'C. 定期購入', label: '定期が「有効（継続中）」かどうかは、何で判断しますか？', options: [
+        { v: 'ステータスが「有効（10）」', d: 'fixed_purchase_status = 10 の場合を有効とする' },
+        { v: '解約日が入っていない', d: 'cancel_date IS NULL の場合を有効とする' },
+        { v: '有効フラグが「1」', d: 'valid_fig = 1 の場合を有効とする' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r6', section: 'D. 解約', label: '解約日はどの日付を使いますか？', options: [
+        { v: '解約日（cancel_date）', d: '定期台帳の解約日フィールドを使います' },
+        { v: 'ステータスが解約（30）になった日', d: 'date_changed でステータス30を検知した日を使います' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r7', section: 'E. 受注の基準日', label: '受注の期間を絞り込むとき、基準にする日付はどれですか？', options: [
+        { v: '注文日', d: '注文が入った日付を基準にします' },
+        { v: '出荷完了日', d: '出荷処理が完了した日を基準にします' },
+        { v: '出荷予定日', d: '出荷予定日を基準にします' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r8', section: 'F. 商品', label: '1回の注文に複数の商品がある場合、「初回商品」はどう決めますか？', options: [
+        { v: '最初の1つだけ', d: '注文内で最初の1商品のみを初回商品とします' },
+        { v: 'すべての商品', d: '注文内のすべての商品を初回商品として扱います' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r9', section: 'G. アップセル/クロスセル', label: '「アップセル」はどう判定しますか？', options: [
+        { v: '商品IDに特定の文字が含まれている' },
+        { v: '商品名に特定の文字が含まれている' },
+        { v: '同じ定期内で金額が前回より上がった場合', d: '同一定期購入IDの中で、前回より金額が増加した場合' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r10', section: 'G. アップセル/クロスセル', label: '「クロスセル」はどう判定しますか？', options: [
+        { v: '商品IDに特定の文字が含まれている' },
+        { v: '前回の注文と違う商品が購入されている', d: '同一定期購入の中で、前回と異なる商品の注文がある場合' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r11', section: 'H. LTV', label: 'LTV（顧客生涯価値）を計算するとき、どの範囲の受注を含めますか？', options: [
+        { v: '同じ定期購入IDの注文だけ', d: '同一 fixed_purchase_id に紐づく注文のみ' },
+        { v: 'その顧客のすべての注文', d: '定期・通常を問わず、顧客の全注文を対象' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]}
+    ]
+  },
+
+  rakuten: {
+    label: '🟥 楽天版',
+    badgeClass: 'bg-red-100 text-red-700',
+    questions: [
+      { id: 'r1', section: 'A. 受注ステータス', label: '売上が確定したとみなすのは、どの状態のときですか？', options: [
+        { v: '「発送待ち」以上（order_progress >= 300）', d: '発送待ち・変更確定待ち・発送済・支払手続き中/済を含む' },
+        { v: '「発送済」のみ（order_progress = 500）', d: '発送済みの注文だけを売上とする' },
+        { v: '「発送待ち」以上かつ「キャンセル確定」を除外', d: 'order_progress >= 300 AND order_progress < 900' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r2', section: 'B. 売上金額', label: '「売上金額」として使う数字はどれですか？', options: [
+        { v: '合計金額（total_price）', d: '商品代金＋送料＋手数料−クーポン等すべて含んだ合計' },
+        { v: '商品代金のみ（goods_price）', d: '送料・手数料・クーポン割引を含まない純粋な商品代金' },
+        { v: '請求金額（request_price）', d: 'ポイント利用分を差し引いた実際の請求額' },
+        { v: '各要素を選んで組み合わせる', d: '下の項目から必要なものを選んでください' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r3', section: 'B. 売上金額（商品別）', label: '商品ごとの売上を出す場合、どのように計算しますか？', options: [
+        { v: '商品代金のみ（price × units）', d: '送料・手数料・ポイントは含めません' },
+        { v: '商品代金＋送料等を按分して合算', d: '商品代金に加えて、送料等を商品数で割って加算します' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r4', section: 'C. 受注の基準日', label: '受注の期間を絞り込むとき、基準にする日付はどれですか？', options: [
+        { v: '注文日（order_date）', d: '楽天で注文が入った日付を基準にします' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r5', section: 'D. 新規 / リピート判定', label: '「新規顧客」と「リピート顧客」はどう区別しますか？', options: [
+        { v: '注文回数で判定', d: '同一 pseudo_customer_id の注文が1回目なら新規、2回目以降ならリピート' },
+        { v: '初回注文日で判定', d: '初回注文日を起点に新規・リピートを区別する' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r6', section: '購入回数', label: '購入回数（リピート回数）はどのように数えますか？', options: [
+        { v: '売上確定した受注の件数をすべて数える', d: '有効な注文数 = 購入回数' },
+        { v: '日付順に数え直す', d: '基準日の日付順で1回目・2回目と順番に番号をふる' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r7', section: 'E. F2転換', label: '「F2転換」（2回目の購入）の期間はどう区切りますか？', options: [
+        { v: '初回購入から30日以内', d: '30日以内に2回目を購入したかどうか' },
+        { v: '初回購入から60日以内' },
+        { v: '初回購入から90日以内' },
+        { v: '期間は設けない', d: '2回目の購入があれば期間に関わらずF2転換とする' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r8', section: 'F. 商品', label: '1回の注文に複数の商品がある場合、「初回商品」はどう決めますか？', options: [
+        { v: '最初の1つだけ', d: '注文内で最初に登録された1商品のみを初回商品とします' },
+        { v: 'すべての商品', d: '注文内のすべての商品を初回商品として扱います' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r9', section: 'G. クーポン・ポイント', label: 'クーポン・ポイントのデータはどう扱いますか？', options: [
+        { v: '店舗発行と楽天発行を分けて分析', d: 'coupon_shop_price と coupon_other_price を区別して集計する' },
+        { v: 'クーポン合計額だけで分析', d: 'coupon_all_total_price のみ使用する' },
+        { v: 'クーポン・ポイントは分析に含めない', d: '売上額の分析のみで、クーポン別の分析はしない' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]},
+      { id: 'r10', section: 'H. LTV', label: 'LTV（顧客生涯価値）はどの範囲で計算しますか？', options: [
+        { v: 'その顧客のすべての注文を合算', d: '顧客の受注金額の合計をLTVとする' },
+        { v: '初回購入から12ヶ月間', d: '初回購入から1年以内の注文のみ対象' },
+        { v: '初回購入から24ヶ月間', d: '初回購入から2年以内の注文のみ対象' },
+        { v: 'その他' },
+        { v: 'ケースによって変わるため、作成時に質問してもらう' }
+      ]}
+    ]
+  }
+};
+
+let currentVariant = null;
+
+/* ========== STEP2 動的レンダリング ========== */
+function renderVariant(variantKey) {
+  currentVariant = variantKey;
+  const v = VARIANTS[variantKey];
+  const ind = document.getElementById('variant-indicator');
+  ind.innerHTML = `<span class="variant-badge ${v.badgeClass}">${v.label}</span>
+    <p class="text-xs text-slate-500 mt-2">全${v.questions.length}問・回答後にプロンプトが自動生成されます（不要な質問はスキップ可）</p>`;
+
+  const container = document.getElementById('rulebook-questions');
+  container.innerHTML = '';
+  let lastSection = '';
+  v.questions.forEach((q, idx) => {
+    const showSectionHeader = q.section !== lastSection;
+    lastSection = q.section;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'rulebook-q';
+    wrapper.dataset.section = q.section;
+
+    let html = '';
+    if (showSectionHeader) {
+      html += `<div class="text-xs text-blue-600 font-bold mb-1">${escapeHtml(q.section)}</div>`;
+    }
+    html += `<div class="flex items-center justify-between mb-2">
+      <label class="font-bold">${idx + 1}. ${escapeHtml(q.label)}</label>
+      <button type="button" onclick="skipQ(this)" class="text-xs bg-slate-100 hover:bg-slate-200 rounded px-3 py-1">スキップ</button>
+    </div>`;
+    html += `<div class="space-y-2" data-qid="${q.id}">`;
+    q.options.forEach(opt => {
+      html += `<label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+        <input type="radio" name="${q.id}" value="${escapeAttr(opt.v)}" class="mr-2">
+        <span class="option-content font-medium">${escapeHtml(opt.v)}</span>`;
+      if (opt.d) html += `<p class="text-xs text-slate-500 ml-6">${escapeHtml(opt.d)}</p>`;
+      html += `</label>`;
+    });
+    html += `</div>`;
+    html += `<input type="text" id="${q.id}-other" placeholder="その他の内容を記入" class="other-input mt-2 w-full border border-slate-300 rounded-lg px-3 py-2 text-sm hidden" />`;
+    wrapper.innerHTML = html;
+    container.appendChild(wrapper);
+  });
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function escapeAttr(s) { return escapeHtml(s); }
+
+function skipQ(btn) {
+  const wrapper = btn.closest('.rulebook-q');
+  const radios = wrapper.querySelectorAll('input[type="radio"]');
+  radios.forEach(r => r.checked = false);
+  wrapper.style.opacity = '0.5';
+  wrapper.dataset.skipped = 'true';
+  btn.textContent = '解除';
+  btn.onclick = () => unskipQ(btn);
+}
+function unskipQ(btn) {
+  const wrapper = btn.closest('.rulebook-q');
+  wrapper.style.opacity = '1';
+  delete wrapper.dataset.skipped;
+  btn.textContent = 'スキップ';
+  btn.onclick = () => skipQ(btn);
+}
+
+document.addEventListener('change', (e) => {
+  if (e.target.type === 'radio' && e.target.name && e.target.name.startsWith('r')) {
+    const otherInput = document.getElementById(`${e.target.name}-other`);
+    if (otherInput) {
+      if (e.target.value === 'その他') {
+        otherInput.classList.remove('hidden');
+        otherInput.focus();
+      } else {
+        otherInput.classList.add('hidden');
+        otherInput.value = '';
+      }
+    }
+  }
+});
+
+/* ========== 出力生成 ========== */
+function generateOutput() {
+  const v = VARIANTS[currentVariant];
+  const lines = [];
+  lines.push(`# ${v.label} ルールブック回答`);
+  lines.push('');
+  lines.push(`## カルテ情報（STEP 1）`);
+  lines.push(`- 回答者: ${val('k1-name')} / ${val('k1-role')}`);
+  lines.push(`- 利用者レイヤー: ${getRadio('k2') || ''}`);
+  lines.push(`- 事業内容・主要チャネル: ${val('k3')}`);
+  lines.push(`- 月商: ${val('k4-revenue')} / 月間注文件数: ${val('k4-orders')}`);
+  lines.push(`- トライアルゴール: ${val('k5')}`);
+  lines.push(`- 現状の課題: ${val('k6')}`);
+  lines.push(`- BIツール: ${getRadio('k7') || ''}${val('k7-other') ? ` / ${val('k7-other')}` : ''}`);
+  lines.push(`- ECカート: ${getRadio('k8') || ''}`);
+  lines.push(`- 販売形態: ${getRadio('k9') || ''}`);
+  lines.push('');
+  lines.push(`## STEP 2 回答`);
+  lines.push('');
+
+  const confirmList = [];
+  v.questions.forEach((q, idx) => {
+    const skipped = isSkipped(q.id);
+    const ans = getRadio(q.id);
+    let display = '';
+    if (skipped) {
+      display = '（スキップ）→ ダッシュボード作成時にユーザーへ確認';
+      confirmList.push(`${idx + 1}. ${q.label}`);
+    } else if (!ans) {
+      display = '（未回答）→ ダッシュボード作成時にユーザーへ確認';
+      confirmList.push(`${idx + 1}. ${q.label}`);
+    } else if (ans.startsWith('ケースによって')) {
+      display = ans;
+      confirmList.push(`${idx + 1}. ${q.label}`);
+    } else if (ans === 'その他') {
+      const t = otherText(q.id);
+      display = `その他: ${t || '（未記入）'}`;
+    } else {
+      display = ans;
+    }
+    lines.push(`### ${idx + 1}. [${q.section}] ${q.label}`);
+    lines.push(`回答: ${display}`);
+    lines.push('');
+  });
+
+  lines.push('---');
+  lines.push('');
+  lines.push(`## ダッシュボード作成時に確認する項目`);
+  if (confirmList.length === 0) {
+    lines.push(`（なし）`);
+  } else {
+    lines.push(`以下の項目はケースによって変わるため、ダッシュボード作成時にユーザーに確認してください。`);
+    lines.push('');
+    confirmList.forEach(item => lines.push(`- ${item}`));
+  }
+
+  document.getElementById('output-text').textContent = lines.join('\n');
+  document.getElementById('output-section').classList.remove('hidden');
+  document.getElementById('output-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+function val(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+
+function copyOutput() {
+  const text = document.getElementById('output-text').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = '✓ コピー済み';
+    setTimeout(() => btn.textContent = 'コピー', 2000);
+  });
+}
+
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbyn8g8encPm6bL1SjI9lN2GqTx2iYcuz0tVEhdNAKX2Ukm-q-6tHmWkDItmmgtALcKBxQ/exec';
+
+async function submitToSheet() {
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('submit-status');
+  btn.disabled = true;
+  btn.textContent = '送信中...';
+  status.classList.remove('hidden');
+  status.className = 'mt-3 text-sm text-slate-500';
+  status.textContent = '送信中です…';
+
+  const v = VARIANTS[currentVariant];
+  const answers = {};
+  v.questions.forEach(q => {
+    answers[q.id] = getRadio(q.id) || '';
+    answers[`${q.id}_other`] = otherText(q.id);
+    answers[`${q.id}_skipped`] = isSkipped(q.id) ? 'true' : '';
+  });
+
+  const payload = {
+    variant: currentVariant,
+    variant_label: v.label,
+    k1_name: val('k1-name'),
+    k1_role: val('k1-role'),
+    k2: getRadio('k2') || '',
+    k3: val('k3'),
+    k4_revenue: val('k4-revenue'),
+    k4_orders: val('k4-orders'),
+    k5: val('k5'),
+    k6: val('k6'),
+    k7: getRadio('k7') || '',
+    k7_other: val('k7-other'),
+    k8: getRadio('k8') || '',
+    k9: getRadio('k9') || '',
+    ...answers,
+    output: document.getElementById('output-text').textContent
+  };
+
+  try {
+    await fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    status.className = 'mt-3 text-sm text-green-600 font-bold';
+    status.textContent = '✓ 送信完了しました。ありがとうございました。';
+    btn.textContent = '✓ 送信済み';
+    btn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+    btn.classList.add('bg-slate-400', 'cursor-not-allowed');
+  } catch (err) {
+    status.className = 'mt-3 text-sm text-red-600';
+    status.textContent = '送信に失敗しました: ' + err.message;
+    btn.disabled = false;
+    btn.textContent = '送信';
+  }
+}
+</script>
+</body>
+</html>
