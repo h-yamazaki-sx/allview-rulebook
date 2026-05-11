@@ -6,7 +6,7 @@
 <title>All View カルテ＆ルールブック</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif; padding-top: 52px; }
   .option-label { transition: all 0.15s ease; }
   .option-label:hover { background-color: #F0F7FF; border-color: #93C5FD; }
   input[type="radio"]:checked + .option-content { color: #1D4ED8; }
@@ -24,9 +24,10 @@
   <header class="text-center mb-10">
     <h1 class="text-3xl font-bold text-slate-900 mb-2">All View 事前質問＆ルールブック</h1>
     <p class="text-sm text-slate-500">
-      STEP 1を回答後、STEP 2へお進みください
+      全12問・約5分 ／ STEP 1を回答後、STEP 2へお進みください
     </p>
   </header>
+
 
   <!-- Section 1: カルテ -->
   <section id="section-karte" class="mb-10">
@@ -50,57 +51,152 @@
 
       <!-- K2: 実際の利用者レイヤー -->
       <div class="karte-q">
-        <label class="block font-bold mb-2">Q2. All Viewを実際に触る方の役職はどれに近いですか？</label>
+        <label class="block font-bold mb-2">Q2. All Viewを実際に触る方の役職はどれに近いですか？ <span class="text-slate-400 text-xs font-normal ml-1">（複数選択可）</span></label>
         <div class="space-y-2" data-qid="k2">
           <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
-            <input type="radio" name="k2" value="経営層" class="mr-2"><span class="option-content">経営層（社長・役員）</span>
+            <input type="checkbox" name="k2" value="経営層" class="mr-2"><span class="option-content">経営層（社長・役員）</span>
           </label>
           <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
-            <input type="radio" name="k2" value="部長・課長" class="mr-2"><span class="option-content">部長・課長クラス</span>
+            <input type="checkbox" name="k2" value="部長・課長" class="mr-2"><span class="option-content">部長・課長クラス</span>
           </label>
           <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
-            <input type="radio" name="k2" value="現場マーケ" class="mr-2"><span class="option-content">現場のマーケティング担当</span>
+            <input type="checkbox" name="k2" value="現場マーケ" class="mr-2"><span class="option-content">現場のマーケティング担当</span>
           </label>
           <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
-            <input type="radio" name="k2" value="その他" class="mr-2"><span class="option-content">その他</span>
+            <input type="checkbox" name="k2" value="その他" class="mr-2"><span class="option-content">その他</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- K2b: 担当業務の軸 -->
+      <div class="karte-q">
+        <label class="block font-bold mb-2">Q3. 主な担当業務を教えてください</label>
+        <div class="space-y-2" data-qid="k2b">
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k2b" value="新規獲得（広告・集客）" class="mr-2"><span class="option-content">新規獲得（広告・集客）が主</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k2b" value="顧客育成・LTV向上" class="mr-2"><span class="option-content">顧客育成・LTV向上が主</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k2b" value="両方担当" class="mr-2"><span class="option-content">両方を担当している</span>
           </label>
         </div>
       </div>
 
       <!-- K3: 事業内容 -->
       <div class="karte-q">
-        <label class="block font-bold mb-2">Q3. 事業内容・主要チャネルを教えてください</label>
-        <p class="text-xs text-slate-500 mb-2">例：D2Cで健康食品のサブスク販売、自社EC + LINE + Amazon など</p>
+        <label class="block font-bold mb-2">Q4. 事業内容・主要チャネルを教えてください</label>
+        <p class="text-xs text-slate-500 mb-2">事業内容（提供している商品・サービスの概要）と、主要な販売・集客チャネル（例：自社EC、実店舗、Amazon、Instagram広告、代理店経由 など）をご記入ください</p>
         <textarea id="k3" rows="2" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" placeholder="事業内容と主要チャネル"></textarea>
       </div>
 
       <!-- K4: 規模感 -->
       <div class="karte-q">
-        <label class="block font-bold mb-2">Q4. 事業規模を教えてください</label>
+        <label class="block font-bold mb-2">Q5. 事業規模を教えてください</label>
         <div class="grid grid-cols-2 gap-3">
           <input type="text" id="k4-revenue" placeholder="月商（例：3,000万円）" class="border border-slate-300 rounded-lg px-3 py-2 text-sm" />
           <input type="text" id="k4-orders" placeholder="月間注文件数（例：5,000件）" class="border border-slate-300 rounded-lg px-3 py-2 text-sm" />
         </div>
       </div>
 
+      <!-- K4b: 利用目的 -->
+      <div class="karte-q">
+        <label class="block font-bold mb-2">Q6. All Viewへの期待・利用イメージはどれに近いですか？</label>
+        <div class="space-y-2" data-qid="k4b">
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k4b" value="他BIツールと併用" class="mr-2"><span class="option-content">TableauやLooker Studioなど他のBIツールと併用したい</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k4b" value="初めてのBI・KPI管理" class="mr-2"><span class="option-content">BIツールは初めて。全体のKPI管理に活用したい</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k4b" value="特定指標の深掘り" class="mr-2"><span class="option-content">特定の指標を深掘りするためのツールとして使いたい</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k4b" value="その他" class="mr-2"><span class="option-content">その他</span>
+          </label>
+        </div>
+        <input type="text" id="k4b-other" placeholder="その他の内容を記入" class="mt-2 w-full border border-slate-300 rounded-lg px-3 py-2 text-sm hidden" />
+      </div>
+
       <!-- K5: トライアルゴール -->
       <div class="karte-q">
         <label class="block font-bold mb-2">
-          Q5. この1ヶ月で「これが見られたら本導入したい」というものを教えてください <span class="text-red-500 text-xs ml-1">★最重要</span>
+          Q7. トライアル期間で「これが見られたら本導入したい」というものを教えてください <span class="text-red-500 text-xs ml-1">★最重要</span>
         </label>
-        <p class="text-xs text-slate-500 mb-2">達成したい姿を具体的に書いていただくほど、オンボーディングの精度が上がります</p>
-        <textarea id="k5" rows="4" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" placeholder="例：広告チャネル別のROASが日次で見られる状態／F2転換率を商品別に把握したい"></textarea>
+        <div class="space-y-2" data-qid="k5">
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k5" value="広告チャネル別のROASを日次で確認したい" class="mr-2"><span class="option-content">広告チャネル別のROASを日次で確認したい</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k5" value="F2転換率を商品別・チャネル別に把握したい" class="mr-2"><span class="option-content">F2転換率を商品別・チャネル別に把握したい</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k5" value="LTVを算出・可視化したい" class="mr-2"><span class="option-content">LTV（顧客生涯価値）を算出・可視化したい</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k5" value="LINE経由の転換率・売上を把握したい" class="mr-2"><span class="option-content">LINE経由の転換率・売上を把握したい</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k5" value="複数チャネルのデータを統合して一元管理したい" class="mr-2"><span class="option-content">複数チャネルのデータを統合して一元管理したい</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k5" value="その他" class="mr-2"><span class="option-content">その他（記入）</span>
+          </label>
+        </div>
+        <input type="text" id="k5-other" placeholder="その他の内容を記入" class="mt-2 w-full border border-slate-300 rounded-lg px-3 py-2 text-sm hidden" />
       </div>
 
       <!-- K6: 現状の課題 -->
       <div class="karte-q">
-        <label class="block font-bold mb-2">Q6. 今、困っていること・見えていない数字はありますか？</label>
-        <textarea id="k6" rows="3" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" placeholder="例：店舗の売上とECの売上を統合して見られない／LTVの計算が担当者ごとにバラバラ"></textarea>
+        <label class="block font-bold mb-2">Q8. 今、困っていること・見えていない数字はありますか？</label>
+        <div class="space-y-2" data-qid="k6">
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k6" value="広告別の効果測定が難しい（LINE等他ツールとの連携不可）" class="mr-2"><span class="option-content">広告別の効果測定が難しい（LINEなど他ツールとの連携不可）</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k6" value="F2転換率など特定指標の算出に時間がかかる" class="mr-2"><span class="option-content">F2転換率など特定指標の算出に時間がかかる</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k6" value="店舗・EC・各チャネルの売上を統合して見られない" class="mr-2"><span class="option-content">店舗・EC・各チャネルの売上を統合して見られない</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k6" value="LTVの計算基準が担当者・ツールごとにバラバラ" class="mr-2"><span class="option-content">LTVの計算基準が担当者・ツールごとにバラバラ</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k6" value="BIツール未経験で何を見るか整理できていない" class="mr-2"><span class="option-content">BIツール未経験で何を見るか整理できていない</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k6" value="その他" class="mr-2"><span class="option-content">その他（記入）</span>
+          </label>
+        </div>
+        <input type="text" id="k6-other" placeholder="その他の内容を記入" class="mt-2 w-full border border-slate-300 rounded-lg px-3 py-2 text-sm hidden" />
+      </div>
+
+      <!-- K6b: 連携予定データ -->
+      <div class="karte-q">
+        <label class="block font-bold mb-2">Q9. 連携予定のデータを教えてください <span class="text-slate-400 text-xs font-normal ml-1">（複数選択可）</span></label>
+        <div class="space-y-2">
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="checkbox" name="k6b" value="ポイントシステムデータ" class="mr-2"><span class="option-content">ポイントシステムデータ</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="checkbox" name="k6b" value="LINEデータ（LINE公式アカウント）" class="mr-2"><span class="option-content">LINEデータ（LINE公式アカウント）</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="checkbox" name="k6b" value="広告データ（Meta・Google Adsなど）" class="mr-2"><span class="option-content">広告データ（Meta・Google Adsなど）</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="checkbox" name="k6b" value="その他" class="mr-2"><span class="option-content">その他</span>
+          </label>
+        </div>
+        <input type="text" id="k6b-other" placeholder="その他のデータを記入" class="mt-2 w-full border border-slate-300 rounded-lg px-3 py-2 text-sm hidden" />
       </div>
 
       <!-- K7: BIツール -->
       <div class="karte-q">
-        <label class="block font-bold mb-2">Q7. 現在お使いのBIツール・分析ツールはありますか？</label>
+        <label class="block font-bold mb-2">Q10. 現在お使いのBIツール・分析ツールはありますか？</label>
         <div class="space-y-2" data-qid="k7">
           <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
             <input type="radio" name="k7" value="なし（Excel/スプシのみ）" class="mr-2"><span class="option-content">なし（Excel・スプレッドシートで管理）</span>
@@ -120,7 +216,7 @@
 
       <!-- K8: ECカート種別（分岐） -->
       <div class="karte-q">
-        <label class="block font-bold mb-2">Q8. 現在お使いのECカートシステムは？ <span class="text-red-500 text-xs ml-1">★STEP2分岐</span></label>
+        <label class="block font-bold mb-2">Q11. 現在お使いのECカートシステムは？ <span class="text-red-500 text-xs ml-1">★STEP2分岐</span></label>
         <div class="space-y-2" data-qid="k8">
           <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
             <input type="radio" name="k8" value="W2" class="mr-2"><span class="option-content">W2 Repeat / W2 Unified</span>
@@ -136,7 +232,7 @@
 
       <!-- K9: 販売形態（分岐） -->
       <div class="karte-q">
-        <label class="block font-bold mb-2">Q9. 主要な販売形態は？ <span class="text-red-500 text-xs ml-1">★STEP2分岐</span></label>
+        <label class="block font-bold mb-2">Q12. 主要な販売形態は？ <span class="text-red-500 text-xs ml-1">★STEP2分岐</span></label>
         <div class="space-y-2" data-qid="k9">
           <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
             <input type="radio" name="k9" value="定期" class="mr-2"><span class="option-content">定期購入（サブスク）が中心</span>
@@ -207,6 +303,27 @@
 </div>
 
 <script>
+/* ========== 進捗バー ========== */
+function updateProgress() {
+  let count = 0;
+  if (document.getElementById('k1-name').value.trim() && document.getElementById('k1-role').value.trim()) count++;
+  if (document.querySelectorAll('input[name="k2"]:checked').length) count++;
+  if (getRadio('k2b')) count++;
+  if (document.getElementById('k3').value.trim()) count++;
+  if (document.getElementById('k4-revenue').value.trim() && document.getElementById('k4-orders').value.trim()) count++;
+  if (getRadio('k4b')) count++;
+  if (getRadio('k5')) count++;
+  if (getRadio('k6')) count++;
+  if (document.querySelectorAll('input[name="k6b"]:checked').length) count++;
+  if (getRadio('k7')) count++;
+  if (getRadio('k8')) count++;
+  if (getRadio('k9')) count++;
+  document.getElementById('progress-count').textContent = count;
+  document.getElementById('progress-bar').style.width = `${Math.round(count / 12 * 100)}%`;
+}
+document.addEventListener('input', updateProgress);
+document.addEventListener('change', updateProgress);
+
 /* ========== 共通ヘルパ ========== */
 function getRadio(name) {
   const el = document.querySelector(`input[name="${name}"]:checked`);
@@ -227,12 +344,14 @@ function proceedToStep2() {
   const errors = [];
   if (!document.getElementById('k1-name').value.trim()) errors.push('k1-name');
   if (!document.getElementById('k1-role').value.trim()) errors.push('k1-role');
-  if (!getRadio('k2')) errors.push('k2');
+  if (!document.querySelectorAll('input[name="k2"]:checked').length) errors.push('k2');
+  if (!getRadio('k2b')) errors.push('k2b');
   if (!document.getElementById('k3').value.trim()) errors.push('k3');
   if (!document.getElementById('k4-revenue').value.trim()) errors.push('k4-revenue');
   if (!document.getElementById('k4-orders').value.trim()) errors.push('k4-orders');
-  if (!document.getElementById('k5').value.trim()) errors.push('k5');
-  if (!document.getElementById('k6').value.trim()) errors.push('k6');
+  if (!getRadio('k4b')) errors.push('k4b');
+  if (!getRadio('k5')) errors.push('k5');
+  if (!getRadio('k6')) errors.push('k6');
   if (!getRadio('k7')) errors.push('k7');
   if (!getRadio('k8')) errors.push('k8');
   if (!getRadio('k9')) errors.push('k9');
@@ -733,8 +852,9 @@ function unskipQ(btn) {
 }
 
 document.addEventListener('change', (e) => {
-  if (e.target.type === 'radio' && e.target.name && e.target.name.startsWith('r')) {
-    const otherInput = document.getElementById(`${e.target.name}-other`);
+  const name = e.target.name;
+  if (e.target.type === 'radio' && name && (name.startsWith('r') || ['k4b','k5','k6'].includes(name))) {
+    const otherInput = document.getElementById(`${name}-other`);
     if (otherInput) {
       if (e.target.value === 'その他') {
         otherInput.classList.remove('hidden');
@@ -743,6 +863,14 @@ document.addEventListener('change', (e) => {
         otherInput.classList.add('hidden');
         otherInput.value = '';
       }
+    }
+  }
+  if (e.target.type === 'checkbox' && name === 'k6b') {
+    const otherInput = document.getElementById('k6b-other');
+    if (otherInput) {
+      const anyOther = [...document.querySelectorAll('input[name="k6b"][value="その他"]')].some(el => el.checked);
+      otherInput.classList.toggle('hidden', !anyOther);
+      if (!anyOther) otherInput.value = '';
     }
   }
 });
@@ -754,12 +882,24 @@ function generateOutput() {
   lines.push(`# ${v.label} ルールブック回答`);
   lines.push('');
   lines.push(`## カルテ情報（STEP 1）`);
+  const k5ans = getRadio('k5') || '';
+  const k5disp = k5ans === 'その他' ? `その他: ${val('k5-other')}` : k5ans;
+  const k6ans = getRadio('k6') || '';
+  const k6disp = k6ans === 'その他' ? `その他: ${val('k6-other')}` : k6ans;
+  const k4bans = getRadio('k4b') || '';
+  const k4bdisp = k4bans === 'その他' ? `その他: ${val('k4b-other')}` : k4bans;
+  const k6bChecked = [...document.querySelectorAll('input[name="k6b"]:checked')].map(el => el.value);
+  const k6bOther = k6bChecked.includes('その他') ? ` / ${val('k6b-other')}` : '';
+  const k6bdisp = k6bChecked.length ? k6bChecked.filter(v => v !== 'その他').join('、') + k6bOther : '（未選択）';
   lines.push(`- 回答者: ${val('k1-name')} / ${val('k1-role')}`);
-  lines.push(`- 利用者レイヤー: ${getRadio('k2') || ''}`);
+  lines.push(`- 利用者レイヤー: ${[...document.querySelectorAll('input[name="k2"]:checked')].map(el => el.value).join('、') || ''}`);
+  lines.push(`- 担当業務軸: ${getRadio('k2b') || ''}`);
   lines.push(`- 事業内容・主要チャネル: ${val('k3')}`);
   lines.push(`- 月商: ${val('k4-revenue')} / 月間注文件数: ${val('k4-orders')}`);
-  lines.push(`- トライアルゴール: ${val('k5')}`);
-  lines.push(`- 現状の課題: ${val('k6')}`);
+  lines.push(`- 利用目的・期待: ${k4bdisp}`);
+  lines.push(`- トライアルゴール: ${k5disp}`);
+  lines.push(`- 現状の課題: ${k6disp}`);
+  lines.push(`- 連携予定データ: ${k6bdisp}`);
   lines.push(`- BIツール: ${getRadio('k7') || ''}${val('k7-other') ? ` / ${val('k7-other')}` : ''}`);
   lines.push(`- ECカート: ${getRadio('k8') || ''}`);
   lines.push(`- 販売形態: ${getRadio('k9') || ''}`);
@@ -843,12 +983,19 @@ async function submitToSheet() {
     variant_label: v.label,
     k1_name: val('k1-name'),
     k1_role: val('k1-role'),
-    k2: getRadio('k2') || '',
+    k2: [...document.querySelectorAll('input[name="k2"]:checked')].map(el => el.value).join('、'),
+    k2b: getRadio('k2b') || '',
     k3: val('k3'),
     k4_revenue: val('k4-revenue'),
     k4_orders: val('k4-orders'),
-    k5: val('k5'),
-    k6: val('k6'),
+    k4b: getRadio('k4b') || '',
+    k4b_other: val('k4b-other'),
+    k5: getRadio('k5') || '',
+    k5_other: val('k5-other'),
+    k6: getRadio('k6') || '',
+    k6_other: val('k6-other'),
+    k6b: [...document.querySelectorAll('input[name="k6b"]:checked')].map(el => el.value).join('、'),
+    k6b_other: val('k6b-other'),
     k7: getRadio('k7') || '',
     k7_other: val('k7-other'),
     k8: getRadio('k8') || '',
@@ -877,5 +1024,17 @@ async function submitToSheet() {
   }
 }
 </script>
+<!-- Sticky progress bar -->
+<div id="progress-wrap" class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200 px-4 py-2 shadow-sm">
+  <div class="max-w-3xl mx-auto">
+    <div class="flex justify-between text-xs text-slate-500 mb-1">
+      <span>回答の進捗</span>
+      <span><span id="progress-count">0</span> / 12 問回答済み</span>
+    </div>
+    <div class="w-full bg-slate-200 rounded-full h-1.5">
+      <div id="progress-bar" class="bg-blue-500 h-1.5 rounded-full transition-all duration-300" style="width:0%"></div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
