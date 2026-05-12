@@ -178,15 +178,28 @@
       <!-- K6b: 連携予定データ -->
       <div class="karte-q">
         <label class="block font-bold mb-2">Q9. 連携予定のデータを教えてください <span class="text-slate-400 text-xs font-normal ml-1">（複数選択可）</span></label>
+        <p class="text-xs text-slate-500 mb-2">ここでは大まかな種類のみご回答ください。詳細なデータ項目は初回MTG以降で個別に確認します。</p>
         <div class="space-y-2">
           <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
-            <input type="checkbox" name="k6b" value="ポイントシステムデータ" class="mr-2"><span class="option-content">ポイントシステムデータ</span>
+            <input type="checkbox" name="k6b" value="ecforce" class="mr-2"><span class="option-content">ecforce</span>
           </label>
           <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
-            <input type="checkbox" name="k6b" value="LINEデータ（LINE公式アカウント）" class="mr-2"><span class="option-content">LINEデータ（LINE公式アカウント）</span>
+            <input type="checkbox" name="k6b" value="W2" class="mr-2"><span class="option-content">W2</span>
           </label>
           <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
-            <input type="checkbox" name="k6b" value="広告データ（Meta・Google Adsなど）" class="mr-2"><span class="option-content">広告データ（Meta・Google Adsなど）</span>
+            <input type="checkbox" name="k6b" value="楽天" class="mr-2"><span class="option-content">楽天</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="checkbox" name="k6b" value="Amazon" class="mr-2"><span class="option-content">Amazon</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="checkbox" name="k6b" value="Yahoo Shopping" class="mr-2"><span class="option-content">Yahoo Shopping</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="checkbox" name="k6b" value="LINE" class="mr-2"><span class="option-content">LINE</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="checkbox" name="k6b" value="広告データ（Meta）" class="mr-2"><span class="option-content">広告データ（Meta）</span>
           </label>
           <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
             <input type="checkbox" name="k6b" value="その他" class="mr-2"><span class="option-content">その他</span>
@@ -425,7 +438,7 @@ function toggleRulebook() {
 /* ========== 質問データ定義（バリアント別） ========== */
 const VARIANTS = {
   regular: {
-    label: '🛒 通常購入版（非定期）',
+    label: 'ecforce 通常購入版',
     badgeClass: 'bg-green-100 text-green-700',
     questions: [
       { id: 'r1', section: 'A. 受注ステータス', label: '売上が確定したとみなすのは、どの状態のときですか？', options: [
@@ -498,7 +511,7 @@ const VARIANTS = {
   },
 
   regular_subscription: {
-    label: '🛒 通常購入版（定期含む）',
+    label: 'ecforce 定期版',
     badgeClass: 'bg-blue-100 text-blue-700',
     questions: [
       { id: 'r1', section: 'A. 売上ステータス', label: '売上が確定したとみなすのは、どの状態のときですか？', options: [
@@ -574,7 +587,7 @@ const VARIANTS = {
   },
 
   w2_regular: {
-    label: '🟢 W2 Repeat 通常購入版（非定期）',
+    label: 'W2 Repeat 通常購入版',
     badgeClass: 'bg-emerald-100 text-emerald-700',
     questions: [
       { id: 'r1', section: 'A. 受注ステータス', label: '売上が確定したとみなすのは、どの状態のときですか？', options: [
@@ -640,7 +653,7 @@ const VARIANTS = {
   },
 
   w2_subscription: {
-    label: '🟣 W2 Repeat 定期版',
+    label: 'W2 Repeat 定期版',
     badgeClass: 'bg-purple-100 text-purple-700',
     questions: [
       { id: 'r1', section: 'A. 受注ステータス', label: '売上が確定したとみなすのは、どの状態のときですか？', options: [
@@ -717,7 +730,7 @@ const VARIANTS = {
   },
 
   rakuten: {
-    label: '🟥 楽天版',
+    label: '楽天 通常',
     badgeClass: 'bg-red-100 text-red-700',
     questions: [
       { id: 'r1', section: 'A. 受注ステータス', label: '売上が確定したとみなすのは、どの状態のときですか？', options: [
