@@ -233,13 +233,13 @@
         <label class="block font-bold mb-2">Q11. 現在お使いのECカートシステムは？ <span class="text-red-500 text-xs ml-1">★STEP2分岐</span></label>
         <div class="space-y-2" data-qid="k8">
           <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
+            <input type="radio" name="k8" value="ecforce" class="mr-2"><span class="option-content">ecforce</span>
+          </label>
+          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
             <input type="radio" name="k8" value="W2" class="mr-2"><span class="option-content">W2 Repeat / W2 Unified</span>
           </label>
           <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
             <input type="radio" name="k8" value="楽天" class="mr-2"><span class="option-content">楽天市場（楽天RMS）</span>
-          </label>
-          <label class="option-wrapper block border border-slate-200 rounded-lg px-4 py-3 cursor-pointer">
-            <input type="radio" name="k8" value="その他" class="mr-2"><span class="option-content">その他カート（Shopify / EC-CUBE / futureshop / 自社開発 など）</span>
           </label>
         </div>
       </div>
@@ -407,7 +407,8 @@ function decideVariant(cart, sales) {
   if (cart === '楽天') return 'rakuten';
   if (cart === 'W2' && sales === '定期') return 'w2_subscription';
   if (cart === 'W2') return 'w2_regular';
-  if (sales === '定期' || sales === '両方') return 'regular_subscription';
+  if (cart === 'ecforce' && (sales === '定期' || sales === '両方')) return 'regular_subscription';
+  if (cart === 'ecforce') return 'regular';
   return 'regular';
 }
 
